@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using JT.Keep.API.Middleware;
+using JT.Keep.DataLayer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -25,6 +28,9 @@ namespace JT.Keep.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            AutoMapperConfig.Initialize();
+            services.AddSingleton<ICardRepository, CardsRepository>();
+            services.AddSingleton<IRepository<Domain.Cooperator>, CooperatorsRepository>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
@@ -39,6 +45,8 @@ namespace JT.Keep.API
             {
                 app.UseHsts();
             }
+
+            app.UseMiddleware<SecretKeyMiddleware>();
 
             app.UseHttpsRedirection();
             app.UseMvc();
