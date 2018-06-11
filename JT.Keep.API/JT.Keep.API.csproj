@@ -24,7 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\JT.Keep.DAL\JT.Keep.DataLayer.csproj" />
+    <ProjectReference Include="..\JT.Keep.DataLayer\JT.Keep.DataLayer.csproj" />
   </ItemGroup>
 
 </Project>

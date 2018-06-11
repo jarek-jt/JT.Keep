@@ -1,9 +1,5 @@
 ﻿using JT.Keep.Domain;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Text;
 
 namespace JT.Keep.DataLayer
 {
